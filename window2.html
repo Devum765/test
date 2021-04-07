@@ -7,9 +7,104 @@
 
 <script>
 
-function TEST01() {
-	window.top.frame1.HenA = 1;
+AreaData = new Array();
+//0国名、1支配国、2民族、3宗教、4経済、5人口、6先進度、7資源
+//民族　1イギリス、2フランス、3ドイツ、4スペイン、5イタリア
+//宗教　1キリスト教、2イスラム教
+AreaData[1] = new Array("ロンドン",0,1,1,0,80,90,0);
+AreaData[2] = new Array("パリ",0,2,1,0,60,85,0);
+AreaData[3] = new Array("ベルリン",0,3,1,0,60,90,0);
+AreaData[4] = new Array("マドリッド",0,4,1,0,45,80,0);
+AreaData[5] = new Array("ローマ",0,5,1,0,60,80,0);
+AreaData[6] = new Array("ウィーン",0,3,1,0,10,90,0);
+AreaData[7] = new Array("ストックホルム",0,6,1,0,10,90,0);
+AreaData[8] = new Array("ワルシャワ",0,7,1,0,40,75,0);
+AreaData[9] = new Array("キエフ",0,8,1,0,10,70,1);
+AreaData[10] = new Array("ブダペスト",0,9,1,0,10,75,0);
+AreaData[11] = new Array("ブカレスト",0,10,1,0,20,75,4);
+AreaData[12] = new Array("アンカラ",0,11,2,0,80,55,0);
+AreaData[13] = new Array("ミンスク",0,12,1,0,10,70,0);
+AreaData[14] = new Array("リガ",0,13,1,0,5,85,0);
+AreaData[15] = new Array("ヘルシンキ",0,14,1,0,5,85,0);
+AreaData[16] = new Array("ペテルブルク",0,15,1,0,30,80,0);//ロシア人口＝140、ペテルブルク・モスクワ・ヴォルコグラード＝各30、コーカサス＝5
+AreaData[17] = new Array("モスクワ",0,15,1,0,30,80,0);
+AreaData[18] = new Array("バグー",0,16,2,0,10,45,10);
+AreaData[19] = new Array("コーカサス",0,15,1,0,5,80,0);
+AreaData[20] = new Array("ヴォルコグラード",0,15,1,0,30,80,0);
+
+AreaSetuzokuData = new Array();
+AreaSousu = 200+1;
+for (HenA=0;HenA<=AreaSousu;HenA++) {
+	AreaSetuzokuData[HenA] = new Array(AreaSousu);
+	for (HenB=0;HenB<=AreaSousu;HenB++) {
+		AreaSetuzokuData[HenA][HenB] = 0;
+	}
 }
+AreaSetuzokuData[2][3] = 1;AreaSetuzokuData[2][4] = 1;AreaSetuzokuData[2][5] = 1;
+AreaSetuzokuData[3][6] = 1;AreaSetuzokuData[3][7] = 1;AreaSetuzokuData[3][8] = 1;
+AreaSetuzokuData[5][6] = 1;
+AreaSetuzokuData[6][10] = 1;
+AreaSetuzokuData[7][15] = 1;
+AreaSetuzokuData[8][13] = 1;AreaSetuzokuData[8][14] = 1;
+AreaSetuzokuData[9][11] = 1;AreaSetuzokuData[9][13] = 1;AreaSetuzokuData[9][20] = 1;
+AreaSetuzokuData[10][11] = 1;
+AreaSetuzokuData[11][12] = 1;
+AreaSetuzokuData[12][18] = 1;
+AreaSetuzokuData[13][14] = 1;AreaSetuzokuData[13][17] = 1;AreaSetuzokuData[13][20] = 1;
+AreaSetuzokuData[14][16] = 1;AreaSetuzokuData[14][17] = 1;
+AreaSetuzokuData[15][16] = 1;
+AreaSetuzokuData[16][17] = 1;
+AreaSetuzokuData[17][20] = 1;
+AreaSetuzokuData[18][19] = 1;
+AreaSetuzokuData[19][20] = 1;
+for (HenA=0;HenA<=AreaSousu;HenA++) {
+	for (HenB=0;HenB<=AreaSousu;HenB++) {
+		if (AreaSetuzokuData[HenA][HenB]=1) {
+			AreaSetuzokuData[HenB][HenA] = 1;
+		}
+	}
+}
+
+NationData = new Array();
+//0国名、1民族、2宗教、3政治体制
+//政治体制　0民主主義、1権威主義、2共産主義
+NationData[1] = new Array("イギリス王国",1,1,0);
+NationData[2] = new Array("フランス王国",2,1,1);
+NationData[3] = new Array("ドイツ第四帝国",3,1,1);
+NationData[4] = new Array("スペイン共和国",4,1,0);
+NationData[5] = new Array("イタリア共和国",5,1,0);
+NationData[6] = new Array("オーストリア帝国",3,1,1);
+NationData[7] = new Array("スウェーデン王国",6,1,0);
+NationData[8] = new Array("ポーランド共和国",7,1,1);
+NationData[9] = new Array("ウクライナ共和国",8,1,0);
+NationData[10] = new Array("ハンガリー共和国",9,1,1);
+NationData[11] = new Array("ルーマニア王国",10,1,0);
+NationData[12] = new Array("トルコ共和国",11,2,1);
+NationData[13] = new Array("ベラルーシ共和国",12,1,2);
+NationData[14] = new Array("リトアニア共和国",13,1,0);
+NationData[15] = new Array("フィンランド共和国",14,1,0);
+NationData[16] = new Array("ロシア社会主義共和国",15,1,2);
+NationData[17] = new Array("アゼルバイジャン共和国",16,2,1);
+
+MinzokuData = new Array();
+//0民族名、1価値観
+//価値観　0なし、1自由、2秩序、3平等
+MinzokuData[1] = new Array("イギリス",1);
+MinzokuData[2] = new Array("フランス",1);
+MinzokuData[3] = new Array("ドイツ",2);
+MinzokuData[4] = new Array("スペイン",1);
+MinzokuData[5] = new Array("イタリア",3);
+MinzokuData[6] = new Array("スウェーデン",2);
+MinzokuData[7] = new Array("ポーランド",3);
+MinzokuData[8] = new Array("ウクライナ",3);
+MinzokuData[9] = new Array("ハンガリー",3);
+MinzokuData[10] = new Array("ルーマニア",3);
+MinzokuData[11] = new Array("トルコ",0);
+MinzokuData[12] = new Array("ベラルーシ",3);
+MinzokuData[13] = new Array("リトアニア",3);
+MinzokuData[14] = new Array("フィンランド",3);
+MinzokuData[15] = new Array("ロシア",3);
+MinzokuData[16] = new Array("アゼルバイジャン",0);
 
 </script>
 
